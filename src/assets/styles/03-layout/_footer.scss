@@ -1,0 +1,262 @@
+.footer {
+  padding: 120px 0 70px;
+  background-size: cover;
+  background-repeat: no-repeat;
+
+  &__con-text {
+    flex: 10;
+    position: relative;
+    top: 70px;
+    padding: 100px 250px;
+  }
+
+  &__menu-left,
+  &__menu-right {
+    width: 40%;
+    display: flex;
+    justify-content: flex-start;
+  }
+
+  &__menu-left {
+    justify-content: flex-end;
+  }
+
+  &__multi-column {
+    display: flex;
+    justify-content: space-between;
+
+    a {
+      color: inherit;
+    }
+
+    ul {
+      display: flex;
+      justify-content: space-between;
+      list-style: none;
+      padding-left: 0;
+
+      .hs-menu-children-wrapper {
+        display: block;
+      }
+
+      li {
+        a {
+          margin-bottom: 20px;
+          font-size: 18px;
+          line-height: 140.62%;
+          color: #000000;
+          display: block;
+        }
+
+        &.hs-item-has-children {
+          a {
+            font-weight: 700;
+          }
+
+          .hs-menu-children-wrapper {
+            a {
+              font-weight: 400;
+            }
+          }
+        }
+      }
+    }
+  }
+
+  &__left-col {
+    width: 35%;
+  }
+
+  &__menu-cols {
+    width: 65%;
+  }
+
+  &__logo-center {
+    width: 20%;
+    display: flex;
+    justify-content: center;
+
+    img {
+      max-width: 200px;
+      object-fit: contain;
+    }
+  }
+
+  &__logo {
+    img {
+      max-width: 200px;
+    }
+  }
+
+  &__single-line {
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    padding-bottom: 47px;
+    border-bottom: 1px solid #EDEBF7;
+
+    .hs-menu-wrapper {
+      ul {
+        list-style: none;
+        padding-left: 0;
+        display: flex;
+        align-items: center;
+        margin: 0;
+
+        li {
+          margin: 0 25px;
+
+          a {
+            color: inherit;
+            font-weight: 700;
+            font-size: 18px;
+            line-height: 140.62%;
+          }
+        }
+      }
+    }
+  }
+
+  &__social {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 55px 0 52px;
+  }
+
+  &__social-link {
+    display: block;
+    margin: 0 12px;
+
+    img {
+      width: 40px;
+      height: 40px;
+      object-fit: contain;
+    }
+  }
+
+  &__privacy {
+    margin-top: 19px;
+    line-height: 1.6;
+
+    a {
+      color: inherit;
+    }
+
+    &.privacy-single {
+      // margin-top: 0;
+      text-align: center;
+    }
+  }
+}
+
+// @media (max-width: breakpoint(lg)) {
+//   .footer {
+//     &__single-line {
+//       border-bottom: 1px solid #EDEBF7;
+//     }
+//   }
+// }
+
+@media (max-width: breakpoint(md)) {
+  .footer {
+    padding: 60px 0 30px;
+
+    &__multi-column {
+      flex-direction: column;
+
+      ul {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 30px;
+      }
+    }
+
+    &__menu-cols {
+      width: 100%;
+    }
+
+    &__left-col {
+      width: 100%;
+      margin-bottom: 32px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    &__social {
+      pad: 50px 0;
+    }
+
+    &__menu-left,
+    &__menu-right {
+      width: 100%;
+      flex-direction: column;
+    }
+
+    &__single-line {
+      flex-direction: column;
+      align-items: center;
+      justify-content: flex-start;
+      border-bottom: none;
+      padding-bottom: 0;
+
+
+      .hs-menu-wrapper ul {
+        flex-direction: column;
+
+        li {
+          margin-bottom: 24px;
+
+          &:last-of-type {
+            margin-bottom: 0;
+          }
+        }
+      }
+    }
+
+    &__logo-center {
+      order: 0;
+      margin-bottom: 32px;
+    }
+
+    &__menu-left {
+      order: 1;
+      padding-bottom: 32px;
+      margin-bottom: 32px;
+      border-bottom: 1px solid #000;
+    }
+
+    &__menu-right {
+      order: 2;
+    }
+
+    &__privacy {
+      &.privacy-center {
+        padding: 22px;
+      }
+    }
+
+    &__con-text {
+      top: 90px;
+      padding: 90px 150px;
+    }
+  }
+}
+
+@media (max-width: breakpoint(sm)) {
+  .footer {
+    &__multi-column {
+      ul {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+      }
+    }
+
+    // &__con-text {
+    //   top: 90px;
+    //   padding: 100px 150px !important;
+    // }
+  }
+}

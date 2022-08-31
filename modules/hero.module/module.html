@@ -1,0 +1,63 @@
+{% import '/wireframe-theme/macros/macros.html' as macros %}
+
+<section class="hero type-{{ module.module_type }} {{ module.module_background.background_type == 'image_color' ? 'position-bottom' : ''}}" style="{{macros.padding(module.padding.padding_top, module.padding.padding_bottom)}}{{macros.margin(module.margin.margin_top, module.margin.margin_bottom)}};background-color: {{ module.module_background.background_color_layer2.color }}; border-radius: 0px 0px {{ module.module_background.border_radius_bottom_layer2_right }}px {{ module.module_background.border_radius_bottom_layer2_left }}px; background-image: url({{ module.module_background.background_image_with_color.src }})">
+  <div class="hero__color-layer2" style="{{macros.textColor(module.module_text_color.color)}}{{macros.background(module.module_background.background_type, module.module_background.background_color.color, module.module_background.background_image.src)}};border-radius: 0px 0px {{ module.module_background.border_radius_bottom_layer1_right }}px {{ module.module_background.border_radius_bottom_layer1_left }}px">
+    <div class="container">
+      <div class="hero__cols{{ module.flip_columns_on_desktop ? ' order-reverse' : ''}}">
+        {# text #}
+        <div class="hero__text-col">
+          {% if module.heading and module.heading_tag %}
+          <{{ module.heading_tag }} class="heading hero__heading {{ module.heading_size }}">{{ module.heading }}</{{ module.heading_tag }}>
+          {% endif %}
+          {% if module.subheading and module.subheading_tag %}
+          <{{ module.subheading_tag }} class="subheading hero__subheading {{ module.subheading_size }}">{{ module.subheading }}</{{ module.subheading_tag }}>
+          {% endif %}
+          {% if module.description %}
+          <div class="description hero__description">{{ module.description }}</div>
+          {% endif %}
+          <!--    btn    -->
+          <div class="hero__buttons buttons-holder">
+            {% if module.button_1.text_field and module.button_1.url_field.href  %}
+            <a class="button hero__button btn-{{ module.button_1.button_type ? module.button_1.button_type : 'contain' }} btn-{{ module.button_1.button_color ? module.button_1.button_color : 'primary' }}" href="{{ module.button_1.url_field.href }}">
+              {{ module.button_1.text_field }}
+            </a>
+            {% endif %}
+            {% if module.button_2.text_field and module.button_2.url_field.href %}
+            <a class="button hero__button btn-{{ module.button_2.button_type ? module.button_2.button_type : 'contain' }} btn-{{ module.button_2.button_color ? module.button_2.button_color : 'primary' }}" href="{{ module.button_2.url_field.href }}">
+              {{ module.button_2.text_field }}
+            </a>
+            {% endif %}
+          </div>
+        </div>
+        {# img #}
+        {% if module.module_type != 'text-only' %}
+        <div class="hero__img-col">
+          {% if module.image_holder.image_field.src %}
+            <div class="hero__img-holder{{module.image_holder.image_has_overlay ? ' img-with-overlay' : ''}}">
+            <img src="{{ module.image_holder.image_field.src }}" alt="{{ module.image_holder.image_field.alt }}" />
+            </div>
+          {% endif %}
+        </div>
+        {% endif %}
+      </div>
+    </div>
+  </div>
+</section>
+  
+
+{% require_css %}
+  <style>
+    .img-with-overlay::after {
+      content: '';
+      background: {{ module.image_holder.overlay_color.color }};
+      opacity: {{ module.image_holder.overlay_opacity }}%;
+      display: block;
+      position: absolute;
+      z-index: 1;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+    }
+  </style>
+{% end_require_css %}

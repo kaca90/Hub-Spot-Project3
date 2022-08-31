@@ -1,0 +1,18 @@
+<!--
+  templateType: blog_listing
+  isAvailableForNewContent: true
+  label:  Blogs listing
+-->
+
+{% extends "./layouts/base.html" %} {% block body %}
+
+  <main id="main-content" class="body-container-wrapper">
+    {% module 'hero' path='../modules/hero' %}
+    
+    {% module 'blog-listing' path='../modules/blog-listing' %}
+      
+    {% module 'cta' path='../modules/cta' %}
+  </main>
+  
+  {% endblock body %}
+  

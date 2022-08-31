@@ -1,0 +1,58 @@
+{% import '/wireframe-theme/macros/macros.html' as macros %}
+
+<footer class="footer" style="background-color: {{module.background_color.color}};background-image: url({{module.background_image.src}});{{macros.padding(module.padding.padding_top, module.padding.padding_bottom)}}{{macros.textColor(module.module_text_color.color)}}">
+
+  <div class="container">
+    <div class="footer__con-text">
+      {% if module.footer_type == 'single-line' %}
+      <div class="footer__single-line">
+        {% if module.use_left_menu %}
+        <div class="footer__menu-left">
+          {% menu id="{{ module.left_menu }}" %}
+        </div>
+        {% endif %}
+        <a href="/" class="footer__logo-center">
+          {% if module.logo.src %}
+          <img src="{{ module.logo.src }}" alt="{{ module.logo.alt }}" />
+          {% endif %}
+        </a>
+        {% if module.use_right_menu %}
+        <div class="footer__menu-right">
+          {% menu id="{{ module.right_menu }}" %}
+        </div>
+        {% endif %}
+      </div>
+      {% else %}
+      <div class="footer__multi-column">
+        <div class="footer__left-col">
+          <a href="/" class="footer__logo">
+            {% if module.logo.src %}
+            <img src="{{ module.logo.src }}" alt="{{ module.logo.alt }}" />
+            {% endif %}
+          </a>
+          <div class="footer__privacy">
+            {{ module.privacy_text }}
+          </div>
+        </div>
+        <div class="footer__menu-cols">
+          {% menu id="{{ module.menu }}" %}
+        </div>
+      </div>
+      {% endif %}
+      {% if module.social_links|length > 0 %}
+      <div class="footer__social">
+        {% for item in module.social_links %}
+        {% if item.social_icon.src %}
+        <a class="footer__social-link" href="{{ item.social_url.href }}" target="_blank" rel="noopener noreferrer">
+          <img src="{{ item.social_icon.src }}" alt="{{ item.social_icon.alt }}" />
+        </a>
+        {% endif %}
+        {% endfor %}
+      </div>
+      {% endif %}
+      {% if module.footer_type == 'single-line' %}
+        <div class="footer__privacy privacy-single">{{ module.privacy_text }}</div>
+      {% endif %}
+    </div>
+  </div>
+</footer>

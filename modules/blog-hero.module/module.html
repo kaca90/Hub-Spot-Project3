@@ -1,0 +1,62 @@
+{% import '/wireframe-theme/macros/macros.html' as macros %}
+
+<section class="blog-hero type-{{ module.module_type }}" style="{{macros.padding(module.padding.padding_top, module.padding.padding_bottom)}}{{macros.margin(module.margin.margin_top, module.margin.margin_bottom)}}{{macros.textColor(module.module_text_color.color)}}{{macros.background(module.module_background.background_type, module.module_background.background_color.color, module.module_background.background_image.src)}};border-radius: 0px 0px 0px {{ module.module_background.border_radius_bottom_layer1 }}px">
+  <div class="blog-hero__color-layer2" style="background-color: {{ module.module_background.background_color_layer2.color }}; border-radius: 0px 0px 0px {{ module.module_background.border_radius_bottom_layer2 }}px">
+    <div class="container">
+      <div class="blog-hero__cols{{ module.flip_columns_on_desktop ? ' order-reverse' : ''}}">
+        <div class="blog-hero__text-col">
+          <div class="blog-hero__meta">{{content.publish_date|unixtimestamp|datetimeformat('%m-%d-%Y')}} / {{ content.blog_post_author.display_name }}</div>
+          {% if module.heading %} 
+          {% set title = module.heading %} 
+        {% else %} 
+          {% set title = content.name %} 
+        {% endif %}
+        <div class="heading blog-hero__heading {{ module.heading_tag }} {{ module.heading_size }}">{{ module.heading }}</div>
+        {% if module.description %}
+        <div class="description blog-hero__description">{{ module.description }}</div>
+        {% endif %}
+          <!--    btn    -->
+          <div class="blog-hero__buttons buttons-holder">
+            {% if module.button_1.text_field and module.button_1.url_field.href  %}
+            <a class="button hero__button btn-{{ module.button_1.button_type ? module.button_1.button_type : 'contain' }} btn-{{ module.button_1.button_color ? module.button_1.button_color : 'primary' }}" href="{{ module.button_1.url_field.href }}">
+              {{ module.button_1.text_field }}
+            </a>
+            {% endif %}
+            {% if module.button_2.text_field and module.button_2.url_field.href %}
+            <a class="button blog-hero__button btn-{{ module.button_2.button_type ? module.button_2.button_type : 'contain' }} btn-{{ module.button_2.button_color ? module.button_2.button_color : 'primary' }}" href="{{ module.button_2.url_field.href }}">
+              {{ module.button_2.text_field }}
+            </a>
+            {% endif %}
+          </div>
+        </div>
+        {% if module.module_type != 'text-only' %}
+        <div class="blog-hero__img-col">
+          {% if module.image_holder.image_field.src %}
+            <div class="blog-hero__img-holder{{module.image_holder.image_has_overlay ? ' img-with-overlay' : ''}}">
+            <img src="{{ module.image_holder.image_field.src }}" alt="{{ module.image_holder.image_field.alt }}" />
+            </div>
+          {% endif %}
+        </div>
+        {% endif %}
+      </div>
+
+    </div>
+</div>
+  
+
+{% require_css %}
+  <style>
+    .img-with-overlay::after {
+      content: '';
+      background: {{ module.image_holder.overlay_color.color }};
+      opacity: {{ module.image_holder.overlay_opacity }}%;
+      display: block;
+      position: absolute;
+      z-index: 1;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+    }
+  </style>
+{% end_require_css %}

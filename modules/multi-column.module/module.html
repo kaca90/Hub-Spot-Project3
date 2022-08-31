@@ -1,0 +1,104 @@
+{% import '/wireframe-theme/macros/macros.html' as macros %}
+
+<section class="multi-column" style="background-color:{{ module.background_color.color }};{{macros.padding(module.padding.padding_top, module.padding.padding_bottom)}}{{macros.margin(module.margin.margin_top, module.margin.margin_bottom)}}{{macros.textColor(module.module_text_color.color)}}">
+  <div class="container">
+    {% if module.heading_tag %}
+    <{{ module.heading_tag }} class="heading multi-column__heading {{ module.heading_size }}">{{ module.heading }}</{{ module.heading_tag }}>
+    {% endif %}
+    {% if module.subheading and module.subheading_tag %}
+    <{{ module.subheading_tag }} class="subheading multi-column__subheading {{ module.subheading_size }}">{{ module.subheading }}</{{ module.subheading_tag }}>
+    {% endif %}
+    <div class="description multi-column__description">{{ module.description }}</div>
+    {% if (module.button_1.text_field or module.button_2.text_field) and (!module.button_1.button_under or !module.button_2.button_under) %}
+    <div class="multi-column__buttons buttons-holder">
+      {% if module.button_1.text_field and module.button_1.url_field.href and !module.button_1.button_under %}
+      <a class="button multi-column__button btn-{{ module.button_1.button_type }} btn-{{ module.button_1.button_color ? module.button_1.button_color : 'primary' }}" href="{{ module.button_1.url_field.href }}">
+        {{ module.button_1.text_field }}
+      </a>
+      {% endif %}
+      {% if module.button_2.text_field and module.button_2.url_field.href and !module.button_2.button_under %}
+      <a class="button multi-column__button btn-{{ module.button_2.button_type }} btn-{{ module.button_2.button_color ? module.button_2.button_color : 'primary' }}" href="{{ module.button_2.url_field.href }}">
+        {{ module.button_2.text_field }}
+      </a>
+      {% endif %}
+    </div>
+    {% endif %}
+    {% set colDesktop = 'cols-3' %}
+    {% if module.cards|length % 4 == 0 %}
+      {% set colDesktop = 'cols-4' %}
+    {% endif %}
+
+      
+    <div class="multi-column__cards {{colDesktop}} {{module.dashed_background ? ' dash-background' : ''}}">
+      <!--   column   -->
+      {% for item in module.cards %}
+      <div 
+        class="multi-column__card align-{{ module.card_content_alignment }}{{ module.use_cards_shadow ? ' has-shadow' : '' }} type-{{ module.card_type }}" 
+        style="background-color: {{ module.column_background_color.color }};border-radius: {{ module.column_border_radius }}px 0px;">
+        {% if module.card_type == 'image' %}
+          <img src="{{item.card_image.src}}" alt="{{item.card_image.alt}}" class="multi-column__card__image" />
+        {% endif %}
+        {% if module.card_type == 'icon' %}
+          <img src="{{item.card_image.src}}" alt="{{item.card_image.alt}}" class="multi-column__card__icon" />
+        {% endif %}
+        <div class="card-content">
+          {% if item.headline_tag %}
+          <{{ item.headline_tag }} class="multi-column__card__title {{ item.headline_size }}">{{ item.title }}</{{ item.headline_tag }}>
+          {% endif %}
+          <div class="multi-column__card__description">{{ item.description }}</div>
+          
+        <!--     btn     -->
+          {% if item.card_button.text_field and item.card_button.url_field.href %}
+          <a class="button multi-column__card__button btn-{{ item.card_button.button_type }} btn-{{ item.card_button.button_color }}" href="{{ item.card_button.url_field.href }}">
+            {{ item.card_button.text_field }}
+          </a>
+          {% endif %}
+        </div>
+      </div>
+      {% endfor %}
+    </div>
+    {# SLIDER #}
+    <div class="swiper-container multi-column__slider">
+      <div class="swiper-wrapper">
+      {% for item in module.cards %}
+      <div 
+        class="multi-column__card swiper-slide align-{{ module.card_content_alignment }}{{ module.use_cards_shadow ? ' has-shadow' : '' }} type-{{ module.card_type }}" 
+        style="background-color: {{ module.card_background.color }}"
+      >
+        {% if module.card_type == 'image' %}
+          <img src="{{item.card_image.src}}" alt="{{item.card_image.alt}}" class="multi-column__card__image" />
+        {% endif %}
+        {% if module.card_type == 'icon' %}
+          <img src="{{item.card_image.src}}" alt="{{item.card_image.alt}}" class="multi-column__card__icon" />
+        {% endif %}
+        <div class="card-content">
+          {% if item.headline_tag %}
+          <{{ item.headline_tag }} class="multi-column__card__title {{ item.headline_size }}">{{ item.title }}</{{ item.headline_tag }}>
+          {% endif %}
+          <div class="multi-column__card__description">{{ item.description }}</div>
+          {% if item.card_button.text_field and item.card_button.url_field.href  %}
+          <a class="button multi-column__card__button btn-{{ item.card_button.button_type }} btn-{{ item.card_button.button_color ? item.card_button.button_color : 'primary' }}" href="{{ item.card_button.url_field.href }}">
+            {{ item.card_button.text_field }}
+          </a>
+          {% endif %}
+        </div>
+      </div>
+      {% endfor %}
+      </div>
+    </div>
+    {% if (module.button_1.text_field or module.button_2.text_field) and (module.button_1.button_under or module.button_2.button_under) %}
+    <div class="multi-column__buttons buttons-holder buttons-under">
+      {% if module.button_1.text_field and module.button_1.url_field.href and module.button_1.button_under %}
+      <a class="button button1 multi-column__button btn-{{ module.button_1.button_type }} btn-{{ module.button_1.button_color ? module.button_1.button_color : 'primary' }}" href="{{ module.button_1.url_field.href }}">
+        {{ module.button_1.text_field }}
+      </a>
+      {% endif %}
+      {% if module.button_2.text_field and module.button_2.url_field.href and module.button_2.button_under %}
+      <a class="button button2 multi-column__button btn-{{ module.button_2.button_type }} btn-{{ module.button_2.button_color ? module.button_2.button_color : 'primary' }}" href="{{ module.button_2.url_field.href }}">
+        {{ module.button_2.text_field }}
+      </a>
+      {% endif %}
+    </div>
+    {% endif %}
+  </div>
+</section>
