@@ -144,19 +144,10 @@
     }
 
     &.privacy-single {
-      // margin-top: 0;
       text-align: center;
     }
   }
 }
-
-// @media (max-width: breakpoint(lg)) {
-//   .footer {
-//     &__single-line {
-//       border-bottom: 1px solid #EDEBF7;
-//     }
-//   }
-// }
 
 @media (max-width: breakpoint(md)) {
   .footer {
@@ -254,9 +245,5 @@
       }
     }
 
-    // &__con-text {
-    //   top: 90px;
-    //   padding: 100px 150px !important;
-    // }
   }
 }

@@ -7,7 +7,7 @@ import Swiper from 'swiper';
 if (Swiper) {
     $(function () {
         // ---- ALL SLIDERS -----
-        // const sliderMomentumRatio = 0.455;
+        const sliderMomentumRatio = 0.455;
         const IsInitialized = (ele) => ele.classList.contains('swiper-container-initialized');
         const swiperInstances = {
             posts:  { instance: null, init: false },
@@ -23,8 +23,25 @@ if (Swiper) {
             postsSlider.forEach(element => {
                 if (!IsInitialized(element)) {
                     swiperInstances.posts.instance = new Swiper(element, { // eslint-disable-line
-                        slidesPerView: 'auto',
-                        spaceBetween: 24,
+                        slidesPerView: 1,
+                        spaceBetween: 20,
+                        freeMode: true,
+                        freeModeMomentumRatio: sliderMomentumRatio,
+                        loop: true,
+                        loopFillGroupWithBlank: true,
+                        dynamicBullets: true,
+                        breakpoints: {
+                            // when window width is >=
+                            992: {
+                                slidesPerView: 5,
+                            },
+                            768: {
+                                slidesPerView: 3,
+                            },
+                            576: {
+                                slidesPerView: 2,
+                            }
+                        },
                     });
                 }
             });
@@ -43,8 +60,25 @@ if (Swiper) {
             gridSlider.forEach(element => {
                 if (!IsInitialized(element)) {
                     swiperInstances.posts.instance = new Swiper(element, { // eslint-disable-line
-                        slidesPerView: 'auto',
-                        spaceBetween: 24,
+                        slidesPerView: 1,
+                        spaceBetween: 20,
+                        freeMode: true,
+                        freeModeMomentumRatio: sliderMomentumRatio,
+                        loop: true,
+                        loopFillGroupWithBlank: true,
+                        dynamicBullets: true,
+                        breakpoints: {
+                            // when window width is >=
+                            992: {
+                                slidesPerView: 5,
+                            },
+                            768: {
+                                slidesPerView: 3,
+                            },
+                            576: {
+                                slidesPerView: 2,
+                            }
+                        },
                     });
                 }
             });
@@ -63,8 +97,33 @@ if (Swiper) {
             featureSlider.forEach(element => {
                 if (!IsInitialized(element)) {
                     swiperInstances.posts.instance = new Swiper(element, { // eslint-disable-line
-                        slidesPerView: 'auto',
-                        spaceBetween: 24,
+                        slidesPerView: 1,
+                        spaceBetween: 20,
+                        freeMode: true,
+                        freeModeMomentumRatio: sliderMomentumRatio,
+                        loop: true,
+                        loopFillGroupWithBlank: false,
+                        dynamicBullets: true,
+                        pagination: {
+                            el: '.swiper-pagination',
+                            clickable: true,
+                        },
+                        navigation: {
+                            nextEl: '.features__slider__nav-next',
+                            prevEl: '.features__slider__nav-prev',
+                        },
+                        breakpoints: {
+                            // when window width is >=
+                            992: {
+                                slidesPerView: 5,
+                            },
+                            768: {
+                                slidesPerView: 3,
+                            },
+                            576: {
+                                slidesPerView: 2,
+                            }
+                        },
                     });
                 }
             });

@@ -48,9 +48,7 @@
           .hs-menu-children-wrapper {
             display: none;
             pointer-events: none;
-            // display: block;
             border-radius: 4px;
-            // background: #fff;
             position: absolute;
             left: 50%;
             transform: translateX(-50%);
@@ -86,7 +84,6 @@
   &__hamburger {
     display: none;
     width: 18px;
-    // margin-left: 15px;
     cursor: pointer;
 
     span {
@@ -112,7 +109,6 @@
         &:first-of-type {
           transform: rotate(-45deg) translateY(1px);
           top: -1px;
-          // margin-bottom: 9px;
         }
 
         &:nth-of-type(2) {
